@@ -29,6 +29,7 @@ print(
 my_file = open("dictionary_climbing.txt", "r")
 data = my_file.readlines()
 words = []
+import time
 for line in data:
     stripped_line = line.strip()
     words.append(stripped_line)
@@ -45,6 +46,7 @@ selected_word_list = []
 for char in selected_word:
     selected_word_list += [char]
 print(f"to Twoja próba nr {runda}, pozostało Ci {attempt} szans!!\n")
+runda+=1
 while (szansa) < (attempt):
     try_user = (input("podaj literę    ")).lower()
     if try_user in selected_letter:
@@ -56,6 +58,8 @@ while (szansa) < (attempt):
         print("".join(plansza))
         if plansza == selected_word_list:
             print(f"brawo, wygrałeś odgadnięte hasło to {selected_word}")
+
+            time.sleep(4)
             break
     else:
         print(f"niestety skucha, wybierz inną literkę")
@@ -65,4 +69,7 @@ while (szansa) < (attempt):
     selected_letter.append(try_user)
 if attempt==szansa:
     print(f"niestety PAPA! już wykorzystałeś {szansa} szans - PRZEGRAŁEŚ\n szukanym słowem było {selected_word}")
+    time.sleep(4)
 my_file.close()
+
+#dodać czy chcesz zagrać jeszcze raz
