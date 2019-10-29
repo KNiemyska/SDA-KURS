@@ -38,15 +38,16 @@ selected_word = (words[random_number - 1]).lower()  # wybranie losowego słowa
 plansza = ["_ "] * len(selected_word)  # wyświetlenie planszy
 print("".join(plansza))  # wydrukowanie planszy
 attempt = int(len(selected_word)+2)
-szansa = 1  # liczba prób
+szansa = 0  # liczba prób
 runda = 1  # liczba rund
 selected_letter = []
 selected_word_list = []
 for char in selected_word:
     selected_word_list += [char]
-print(f"to Twoja próba nr {runda}, pozostało Ci {attempt - szansa} szans!!\n")
-while szansa < (attempt):
-    try_user = input("podaj literę    ")
+print(f"to Twoja próba nr {runda}, pozostało Ci {attempt} szans!!\n")
+while (szansa) < (attempt):
+
+    try_user = (input("podaj literę    ")).lower()
     if try_user in selected_letter:
         try_user = input(" HALO HALO, tą literkę już podawałeś, wybierz inną \n")
     if try_user in selected_word:
@@ -54,15 +55,19 @@ while szansa < (attempt):
             if selected_word[elements] == try_user:
                 plansza[elements] = try_user
         print("".join(plansza))
+
         if plansza == selected_word_list:
             print(f"brawo, wygrałeś odgadnięte hasło to {selected_word}")
             break
     else:
         print(f"niestety skucha, wybierz inną literkę")
+
         szansa += 1
+    print(f"to Twoja próba nr {runda}, pozostało Ci {attempt - (szansa)} szans!!\n")
     runda += 1
     selected_letter.append(try_user)
-    print(f"to Twoja próba nr {runda}, pozostało Ci {attempt - szansa} szans!!\n")
+
 if attempt==szansa:
     print(f"niestety PAPA! już wykorzystałeś {szansa} szans - PRZEGRAŁEŚ\n szukanym słowem było {selected_word}")
+
 my_file.close()
